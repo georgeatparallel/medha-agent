@@ -218,6 +218,20 @@ Resolution order is **CLI flag > `MEDHA_*` env > `~/.medha/config.toml` > first-
 
 > MEDHA reads **only** its own `MEDHA_*` namespace: never a project's `.env`, never generic `OPENAI_*` / `GOOGLE_*` names. A harness that roams into repos it doesn't own must not let one project's environment swap out its model or credentials. Run `medha pulse` to see what resolved and from where.
 
+### Connect web search
+
+For free web search and page fetching without a Parallel account or API key, run
+`/connect parallel` in the TUI and select **Parallel Search**, or open **Connectors**
+in the desktop app and connect **Parallel Search**. The connector uses
+[Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) at
+`https://search.parallel.ai/mcp`; anonymous searches use Fast mode with free-tier
+rate limits.
+
+Ask, for example, "Find the latest Rust release announcement and summarize its
+highlights with source links." Approve the proposed MCP calls when prompted.
+Existing saved MCP servers keep their URL and sign-in settings; selecting this
+connector adds a separate entry if you already saved the older OAuth endpoint.
+
 ## What you get
 
 **Nothing executes on the model's word.** Deny-first policy, a shell danger scanner, and an approval gate that shows a real rendered diff, then pins it, so if the file changes between preview and execution the edit is refused. What you approved is what runs.
